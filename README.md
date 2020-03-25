@@ -1,2 +1,2 @@
 # pubscrapper
-pubscrapper with golfing
+pubscrapper with golang
