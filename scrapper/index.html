@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pub scrapper</title>
+  </head>
+  <body>
+    <h1>Pub scrapper</h1>
+    <h3>Searching publications</h3>
+    <h4>Returning result csv file</h4>
+    <form method="POST" action="/scrape">
+      Term: <input placeholder="Searching term" name="term" />
+      <p>
+        Impact factor: <input placeholder="Impact factor above" name="impact" />
+      </p>
+      <p>Relative days: <input placeholder="From today" name="reldate" /></p>
+      <p>Max retreive: <input paceholder="No. of max paper" name="retmax" /></p>
+      <p>
+        <button>Search</button>
+      </p>
+    </form>
+  </body>
+</html>

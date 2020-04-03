@@ -23,12 +23,12 @@ func main() {
 	e := echo.New()
 	e.GET("/", handleHome)
 	e.POST("/scrape", handleScrape)
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Start(":1323")
 
 }
 
 func handleHome(c echo.Context) error {
-	return c.File("scrapper/home.html")
+	return c.File("scrapper/index.html")
 }
 
 func handleScrape(c echo.Context) error {
