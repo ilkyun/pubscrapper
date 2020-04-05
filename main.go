@@ -1,3 +1,5 @@
+// +build darwin
+
 package main
 
 import (
@@ -18,7 +20,7 @@ const fileName string = "results.csv"
 // to add open browser with localhost
 
 func main() {
-	//	openbrowser("http://localhost:1323")
+	openbrowser("http://localhost:1323")
 
 	e := echo.New()
 	e.GET("/", handleHome)
@@ -28,7 +30,7 @@ func main() {
 }
 
 func handleHome(c echo.Context) error {
-	return c.File("scrapper/index.html")
+	return c.File("index.html")
 }
 
 func handleScrape(c echo.Context) error {
