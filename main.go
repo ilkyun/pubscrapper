@@ -18,12 +18,12 @@ const fileName string = "results.csv"
 // to add open browser with localhost
 
 func main() {
-	openbrowser("http://localhost:1323")
+	// openbrowser("http://localhost:1323")
 
 	e := echo.New()
 	e.GET("/", handleHome)
 	e.POST("/scrape", handleScrape)
-	e.Start(":1323")
+	e.Start("https://pubscrapper.herokuapp.com")
 
 }
 
