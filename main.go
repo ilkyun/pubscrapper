@@ -18,12 +18,15 @@ const fileName string = "results.csv"
 // to add open browser with localhost
 
 func main() {
-	// openbrowser("http://localhost:1323")
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
 
 	e := echo.New()
 	e.GET("/", handleHome)
 	e.POST("/scrape", handleScrape)
-	e.Start("https://pubscrapper.herokuapp.com")
+	e.Start(port)
 
 }
 
