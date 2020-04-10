@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"os"
-	"os/exec"
-	"runtime"
 	"strconv"
 	"strings"
 
@@ -18,20 +17,16 @@ const fileName string = "results.csv"
 // to add open browser with localhost
 
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("$PORT must be set")
+	http.HandleFunc("/", handler)
+	fmt.Println("listening...")
+	err := http.ListenAndServe(GetPort(), nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
 	}
-
-	e := echo.New()
-	e.GET("/", handleHome)
-	e.POST("/scrape", handleScrape)
-	e.Start(port)
-
 }
 
-func handleHome(c echo.Context) error {
-	return c.File("index.html")
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Hello. This is our fist Go web app")
 }
 
 func handleScrape(c echo.Context) error {
@@ -46,22 +41,12 @@ func handleScrape(c echo.Context) error {
 	return c.Attachment(fileName, fileName)
 }
 
-func openbrowser(url string) {
-	var err error
-
-	switch runtime.GOOS {
-	case "linux":
-		err = exec.Command("xdg-open", url).Start()
-	case "windows":
-		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
-	case "darwin":
-		err = exec.Command("open", url).Start()
-		fmt.Println("darwin!")
-	default:
-		err = fmt.Errorf("unsupported platform")
+//GetPort get the Port from the environment
+func GetPort() string {
+	var port = os.Getenv("PORT")
+	if port == " " {
+		port = "4747"
+		fmt.Println("INFO: No PORT environment variable detected")
 	}
-	if err != nil {
-		log.Fatal(err)
-	}
-
+	return ":" + port
 }
