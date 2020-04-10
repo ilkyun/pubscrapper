@@ -23,17 +23,22 @@ func main() {
 	// 	log.Fatal("$PORT must be set")
 	// }
 	openbrowser("http://localhost:1323/")
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	e := echo.New()
-	e.GET("/", handleHome)
+	e.Static("/", dir+"/"+"index.html")
+	fmt.Println(dir + "index.html")
 	e.POST("/scrape", handleScrape)
 	e.Start(":1323")
 
 }
 
-func handleHome(c echo.Context) error {
-	return c.File("index.html")
-}
+// func handleHome(c echo.Context) error {
+// 	return c.File("index.html")
+// }
 
 func handleScrape(c echo.Context) error {
 	defer os.Remove(fileName)
@@ -57,7 +62,6 @@ func openbrowser(url string) {
 		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
 	case "darwin":
 		err = exec.Command("open", url).Start()
-		fmt.Println("darwin!")
 	default:
 		err = fmt.Errorf("unsupported platform")
 	}

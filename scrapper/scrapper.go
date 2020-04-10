@@ -103,7 +103,11 @@ func getInfo(ids string) []extractedPaper {
 }
 
 func checkIF(journal string, issn string) string {
-	csvFile, err := os.Open("JCR_ISSN_2018.csv")
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	csvFile, err := os.Open(dir + "/" + "JCR_ISSN_2018.csv")
 	impact := "0"
 	journal = strings.ToUpper(CleanString(journal))
 	checkErr(err)
@@ -128,7 +132,7 @@ func checkErr(err error) {
 
 func checkCode(res *http.Response) {
 	if res.StatusCode != 200 {
-		log.Fatalln("Request failed with Status: res.StatusCode")
+		log.Fatalln("Request failed with Status: " + strconv.Itoa(res.StatusCode))
 	}
 }
 
