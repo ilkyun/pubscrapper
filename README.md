@@ -6,6 +6,8 @@ Using NCBI APIs, pubscrapper can get the list of papers with breif information s
 
 To shutdown server, Press Ctrl+C (not command) on the terminal window.
 
+<hr/>
+
 ### Update Apr.20.2020
 
 PubScrapper (executable file) works fine without golang installation. I confirmed in MacOSX Catalina (10.15) and Mojave (10.14).
