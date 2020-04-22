@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ilkyun/PubScrapper/scrapper"
+	"github.com/ilkyun/pubscrapper/scrapper"
 	"github.com/labstack/echo"
 )
 
