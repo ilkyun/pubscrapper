@@ -4,21 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pub scrapper</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <h1>Pub scrapper</h1>
-    <h3>Searching publications</h3>
-    <h4>Returning result csv file</h4>
-    <form method="POST" action="/scrape">
-      Term: <input placeholder="Searching term" name="term" />
-      <p>
-        Impact factor: <input placeholder="Impact factor above" name="impact" />
-      </p>
-      <p>Relative days: <input placeholder="From today" name="reldate" /></p>
-      <p>Max retreive: <input paceholder="No. of max paper" name="retmax" /></p>
-      <p>
+    <h1>Pubscrapper</h1>
+    <h3>Searching publications from Pubmed.gov</h3>
+    <h4>! Search button will give you a result csv file</h4>
+    <div class="input-table">
+      <div class="menu">
+        <span class="menu-title">Term:</span>
+        <span class="menu-title">Impact factor:</span>
+        <span class="menu-title">Relative days:</span>
+        <span class="menu-title">Max retrieve:</span>
+      </div>
+      <form method="POST" action="/scrape" class="input-form">
+        <input placeholder="Searching term" name="term" />
+        <span class="menu-desc">(e.g. breast+cancer)</span>
+
+        <input placeholder="Impact factor above" name="impact" />
+        <span class="menu-desc">(e.g. 5.5)</span>
+
+        <input placeholder="Search recent days" name="reldate" />
+        <span class="menu-desc">(e.g. 30)</span>
+
+        <input placeholder="Number of max paper" name="retmax" />
+        <span class="menu-desc">(recommend: more than 100)</span>
+
         <button>Search</button>
-      </p>
-    </form>
+      </form>
+    </div>
+    <span class="copyright">Made by Ilkyun Im.</span>
+    <a href="https://github.com/ilkyun/pubscrapper" class="copyright"
+      >Visit github page</a
+    >
   </body>
 </html>
