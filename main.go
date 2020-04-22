@@ -31,7 +31,7 @@ func main() {
 
 	e := echo.New()
 	e.Static("/", dir+"/"+"index.html")
-	fmt.Println(dir + "index.html")
+	fmt.Println(dir + "/" + "index.html")
 	e.POST("/scrape", handleScrape)
 	e.Start(":1323")
 
